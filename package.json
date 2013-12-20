@@ -8,9 +8,11 @@
   },
   "scripts": {
     "test": "tape test/*.js",
-    "cover": "istanbul cover tape -- test/*.js"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/totherik/caller.git"
+  },
   "keywords": [
     "caller",
     "file",
@@ -19,6 +21,11 @@
   "author": "Erik Toth <totherik@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "tape": "~2.3.2"
+  },
+  "readmeFilename": "README.md",
+  "gitHead": "15bef0805246629cc89fb71ded29e674009ffc45",
+  "dependencies": {
     "tape": "~2.3.2"
   }
 }

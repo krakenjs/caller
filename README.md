@@ -1,6 +1,6 @@
 #### caller
 
-Figure out your caller.
+Figure out your caller (thanks to @substack).
 
 ##### Initialization Time Caller
 ```javascript

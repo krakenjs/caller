@@ -36,7 +36,7 @@ exports.doWork = function () {
 
 ### Depth
 
-Caller also accepts a `depth` argument for tracing back further:
+Caller also accepts a `depth` argument for tracing back further (defaults to `1`).
 
 ```javascript
 // foo.js

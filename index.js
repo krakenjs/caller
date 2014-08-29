@@ -17,7 +17,7 @@ module.exports = function (depth) {
     };
 
     stack = (new Error()).stack;
-    depth = isNaN(depth) ? 1 : (depth > stack.length - 2 ? stack.length - 2 : depth);
+    depth = !depth || isNaN(depth) ? 1 : (depth > stack.length - 2 ? stack.length - 2 : depth);
     stack = stack.slice(depth + 1);
 
     do {

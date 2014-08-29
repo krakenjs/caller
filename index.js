@@ -16,13 +16,13 @@ module.exports = function (depth) {
         return stack;
     };
 
-    depth = isNaN(depth) ? 1 : depth;
     stack = (new Error()).stack;
+    depth = isNaN(depth) ? 1 : (depth > stack.length - 2 ? stack.length - 2 : depth);
     stack = stack.slice(depth + 1);
 
     do {
         frame = stack.shift();
-        file = frame && frame.getFileName()
+        file = frame && frame.getFileName();
     } while (stack.length && file === 'module.js');
 
     return file;

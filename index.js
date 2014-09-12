@@ -7,7 +7,7 @@
  * @blessings: https://twitter.com/eriktoth/statuses/413719312273125377
  * @see https://code.google.com/p/v8/wiki/JavaScriptStackTraceApi
  */
-module.exports = function () {
+module.exports = function (depth) {
     var pst, stack, file, frame;
 
     pst = Error.prepareStackTrace;
@@ -17,11 +17,12 @@ module.exports = function () {
     };
 
     stack = (new Error()).stack;
-    stack = stack.slice(2);
+    depth = !depth || isNaN(depth) ? 1 : (depth > stack.length - 2 ? stack.length - 2 : depth);
+    stack = stack.slice(depth + 1);
 
     do {
         frame = stack.shift();
-        file = frame && frame.getFileName()
+        file = frame && frame.getFileName();
     } while (stack.length && file === 'module.js');
 
     return file;

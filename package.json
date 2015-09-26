@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "@substack's caller.js as a module",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "tape test/*.js"
   },

@@ -11,19 +11,24 @@ module.exports = function (depth) {
     var pst, stack, file, frame;
 
     pst = Error.prepareStackTrace;
-    Error.prepareStackTrace = function (_, stack) {
+    Error.prepareStackTrace = function (e, frames) {
+        var stack = frames.map((frame) => {
+            return frame.getFileName();
+        });
         Error.prepareStackTrace = pst;
         return stack;
     };
 
     stack = (new Error()).stack;
-    depth = !depth || isNaN(depth) ? 1 : (depth > stack.length - 2 ? stack.length - 2 : depth);
-    stack = stack.slice(depth + 1);
+
+
+    // depth = !depth || isNaN(depth) ? 1 : (depth > stack.length - 5 ? stack.length - 5 : depth);
+    // stack = stack.slice(depth + 1);
+    stack = stack.slice(2);
 
     do {
-        frame = stack.shift();
-        file = frame && frame.getFileName();
-    } while (stack.length && file === 'module.js');
+        file = stack.shift();
+    } while (stack.length && file.match(/module\.js?/));
 
     return file;
 };

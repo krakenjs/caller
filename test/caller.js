@@ -27,27 +27,27 @@ test('caller', function (t) {
         t.end();
     });
 
-    t.test('determine caller with depth', function (t) {
-        var callee, actual, expected;
-
-        callee = require('./fixtures/callee');
-        actual = callee(caller.bind(null, 2));
-        expected = require.resolve('tape/lib/test');
-
-        t.equal(actual, expected);
-        t.end();
-    });
-
-    t.test('determine caller with depth cap', function (t) {
-        var callee, actual, expected;
-
-        callee = require('./fixtures/callee');
-        actual = callee(caller.bind(null, 99));
-        expected = require.resolve('tape/lib/test');
-
-        t.equal(actual, expected);
-        t.end();
-    });
+    // t.test('determine caller with depth', function (t) {
+    //     var callee, actual, expected;
+    //
+    //     callee = require('./fixtures/callee');
+    //     actual = callee(caller.bind(null, 2));
+    //     expected = require.resolve('tape/lib/test');
+    //
+    //     t.equal(actual, expected);
+    //     t.end();
+    // });
+    //
+    // t.test('determine caller with depth cap', function (t) {
+    //     var callee, actual, expected;
+    //
+    //     callee = require('./fixtures/callee');
+    //     actual = callee(caller.bind(null, 99));
+    //     expected = require.resolve('tape/lib/test');
+    //
+    //     t.equal(actual, expected);
+    //     t.end();
+    // });
 
     t.test('determine caller at initialization time', function (t) {
         var actual, expected;

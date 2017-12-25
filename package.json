@@ -2,6 +2,9 @@
   "name": "caller",
   "version": "1.0.1",
   "description": "@substack's caller.js as a module",
+  "engines": {
+   "node": ">=8"
+  },
   "main": "index.js",
   "files": [
     "index.js"

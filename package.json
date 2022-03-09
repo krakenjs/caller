@@ -1,6 +1,6 @@
 {
   "name": "caller",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "@substack's caller.js as a module",
   "main": "index.js",
   "files": [

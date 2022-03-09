@@ -1,4 +1,5 @@
 'use strict';
+var assert = require('assert');
 
 
 /**
@@ -8,7 +9,7 @@
  * @see https://code.google.com/p/v8/wiki/JavaScriptStackTraceApi
  */
 module.exports = function (depth) {
-    var pst, stack, file, frame;
+    var pst, stack, file, frame, startIdx;
 
     pst = Error.prepareStackTrace;
     Error.prepareStackTrace = function (_, stack) {
@@ -17,8 +18,13 @@ module.exports = function (depth) {
     };
 
     stack = (new Error()).stack;
+    // Handle case where error object is wrapped by say babel. Try to find current file's index first.
+    startIdx = 0;
+    while(startIdx < stack.length && stack[startIdx].getFileName() !== __filename) startIdx++;
+    assert(startIdx < stack.length, 'Unexpected: unable to find caller/index.js in the stack');
+
     depth = !depth || isNaN(depth) ? 1 : (depth > stack.length - 2 ? stack.length - 2 : depth);
-    stack = stack.slice(depth + 1);
+    stack = stack.slice(startIdx + depth + 1);
 
     do {
         frame = stack.shift();

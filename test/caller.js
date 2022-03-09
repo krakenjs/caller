@@ -38,6 +38,21 @@ test('caller', function (t) {
         t.end();
     });
 
+    t.test('determine caller when Error is wrapped', function (t) {
+        var restoreError, actual, expected;
+
+        restoreError = require('./fixtures/wrapped-error')();
+        try {
+            actual = caller();
+        } finally {
+            restoreError();
+        }
+        expected = require.resolve('tape/lib/test');
+
+        t.equal(actual, expected);
+        t.end();
+    });
+
     t.test('determine caller with depth cap', function (t) {
         var callee, actual, expected;
 
